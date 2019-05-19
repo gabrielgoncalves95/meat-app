@@ -4,6 +4,8 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {PATH} from '../../environments/environment';
 import {Observable} from 'rxjs';
+import {catchError} from 'rxjs/operators';
+import {ErrorHandler} from '../app.error-handler';
 
 @Injectable()
 export class RestaurantsService {
@@ -11,6 +13,6 @@ export class RestaurantsService {
   }
 
   restaurants(): Observable<Restaurant[]> {
-    return this.http.get<Restaurant[]>(`${MEAT_API}${PATH.restaurants}/all`);
+    return this.http.get<Restaurant[]>(`${MEAT_API}${PATH.restaurants}/all`).pipe(catchError(ErrorHandler.handleError));
   }
 }
