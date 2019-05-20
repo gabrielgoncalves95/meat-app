@@ -13,6 +13,7 @@ export class RestaurantsService {
   }
 
   restaurants(): Observable<Restaurant[]> {
-    return this.http.get<Restaurant[]>(`${MEAT_API}${PATH.restaurants}/all`).pipe(catchError(ErrorHandler.handleError));
+    return this.http.get<Restaurant[]>(`${MEAT_API}${PATH.restaurants}/all`)
+      .pipe(catchError(ErrorHandler.handleError));
   }
 }
